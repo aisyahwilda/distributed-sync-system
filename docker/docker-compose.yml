@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  node1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.node
+    container_name: node1
+    ports:
+      - "8001:8000"
+    environment:
+      - NODE_ID=node1
+      - PORT=8000
+      - PEERS=node2,node3
+    networks:
+      - distnet
+
+  node2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.node
+    container_name: node2
+    ports:
+      - "8002:8000"
+    environment:
+      - NODE_ID=node2
+      - PORT=8000
+      - PEERS=node1,node3
+    networks:
+      - distnet
+
+  node3:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.node
+    container_name: node3
+    ports:
+      - "8003:8000"
+    environment:
+      - NODE_ID=node3
+      - PORT=8000
+      - PEERS=node1,node2
+    networks:
+      - distnet
+
+networks:
+  distnet:
