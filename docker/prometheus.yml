@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: "distributed-sync"
+
+scrape_configs:
+  - job_name: "distributed-sync"
+    static_configs:
+      - targets:
+          - "node1:8000"
+          - "node2:8000"
+          - "node3:8000"
+    metrics_path: "/metrics"
+    scrape_interval: 10s
+    scrape_timeout: 5s
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+      - source_labels: [__scheme__]
+        target_label: scheme
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]

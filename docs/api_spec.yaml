@@ -1,0 +1,227 @@
+openapi: 3.0.0
+info:
+  title: Distributed Sync System API
+  version: 1.0.0
+  description: API for distributed synchronization system with Raft consensus, distributed locks, queue, and cache coherence
+
+servers:
+  - url: http://localhost:8001
+    description: Node 1
+  - url: http://localhost:8002
+    description: Node 2
+  - url: http://localhost:8003
+    description: Node 3
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      tags:
+        - System
+      responses:
+        "200":
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  node_id:
+                    type: string
+
+  /status:
+    get:
+      summary: Get overall system status
+      tags:
+        - System
+      responses:
+        "200":
+          description: System status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  node_id:
+                    type: string
+                  peers:
+                    type: array
+                    items:
+                      type: string
+
+  /lock/acquire:
+    post:
+      summary: Acquire a distributed lock
+      tags:
+        - Lock Manager
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                node_id:
+                  type: string
+                resource_id:
+                  type: string
+                lock_type:
+                  type: string
+                  enum: [exclusive, shared]
+      responses:
+        "200":
+          description: Lock acquisition result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  request_id:
+                    type: string
+                  lock_type:
+                    type: string
+
+  /lock/release:
+    post:
+      summary: Release a distributed lock
+      tags:
+        - Lock Manager
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                node_id:
+                  type: string
+                resource_id:
+                  type: string
+      responses:
+        "200":
+          description: Release result
+
+  /lock/status/{resource_id}:
+    get:
+      summary: Get lock status of a resource
+      tags:
+        - Lock Manager
+      parameters:
+        - name: resource_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lock status
+
+  /queue/enqueue:
+    post:
+      summary: Enqueue a message
+      tags:
+        - Queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                content:
+                  type: string
+      responses:
+        "200":
+          description: Message enqueued
+
+  /queue/dequeue:
+    get:
+      summary: Dequeue a message
+      tags:
+        - Queue
+      parameters:
+        - name: key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Dequeued message
+
+  /queue/status:
+    get:
+      summary: Get queue status
+      tags:
+        - Queue
+      responses:
+        "200":
+          description: Queue status
+
+  /cache/put:
+    post:
+      summary: Put value in cache
+      tags:
+        - Cache
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                value:
+                  type: string
+      responses:
+        "200":
+          description: Value stored
+
+  /cache/get/{key}:
+    get:
+      summary: Get value from cache
+      tags:
+        - Cache
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Cache value
+
+  /cache/stats:
+    get:
+      summary: Get cache statistics
+      tags:
+        - Cache
+      responses:
+        "200":
+          description: Cache statistics
+
+  /raft/status:
+    get:
+      summary: Get Raft node status
+      tags:
+        - Raft
+      responses:
+        "200":
+          description: Raft status
+
+  /failure-detector/status:
+    get:
+      summary: Get failure detector status
+      tags:
+        - Failure Detection
+      responses:
+        "200":
+          description: Cluster status
