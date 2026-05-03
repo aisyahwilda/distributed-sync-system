@@ -1,1 +1,63 @@
 Method,Name,Error,Occurrences
+GET,/cache/get/cache_key_47,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_96,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_68,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_18,CatchResponseError('Failed to get from cache: 0'),2
+GET,/cache/get/cache_key_54,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_41,CatchResponseError('Failed to get from cache: 0'),1
+POST,/queue/enqueue,CatchResponseError('Failed to enqueue: 0'),22
+POST,/cache/put,CatchResponseError('Failed to put to cache: 0'),18
+GET,/cache/get/cache_key_34,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_22,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_94,CatchResponseError('Failed to get from cache: 0'),3
+POST,/cache/put,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",15
+GET,/cache/get/cache_2,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",4
+GET,/cache/get/cache_key_52,CatchResponseError('Failed to get from cache: 0'),1
+GET,/lock/status/resource_2,CatchResponseError('Failed to check status: 0'),2
+GET,/cache/get/cache_key_6,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_29,CatchResponseError('Failed to get from cache: 0'),1
+GET,/queue/dequeue?key=queue_4,CatchResponseError('Failed to dequeue: 0'),10
+GET,/cache/stats,CatchResponseError('Failed to get cache stats: 0'),8
+POST,/lock/acquire,CatchResponseError('Failed to acquire shared lock: 0'),19
+GET,/lock/status/resource_7,CatchResponseError('Failed to check status: 0'),2
+POST,/lock/acquire,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",25
+GET,/cache/get/cache_key_59,CatchResponseError('Failed to get from cache: 0'),3
+GET,/cache/get/cache_key_2,CatchResponseError('Failed to get from cache: 0'),1
+GET,/lock/status/resource_3,CatchResponseError('Failed to check status: 0'),3
+GET,/lock/status/resource_8,CatchResponseError('Failed to check status: 0'),5
+GET,/cache/get/cache_key_44,CatchResponseError('Failed to get from cache: 0'),1
+GET,/queue/dequeue?key=queue_2,CatchResponseError('Failed to dequeue: 0'),11
+GET,/cache/get/cache_key_75,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_57,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_62,CatchResponseError('Failed to get from cache: 0'),1
+GET,/queue/dequeue?key=queue_5,CatchResponseError('Failed to dequeue: 0'),8
+POST,/lock/acquire,CatchResponseError('Failed to acquire lock: 0'),14
+GET,/queue/dequeue?key=queue_1,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",5
+GET,/cache/get/cache_key_72,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_15,CatchResponseError('Failed to get from cache: 0'),1
+GET,/lock/status/resource_1,CatchResponseError('Failed to check status: 0'),3
+GET,/queue/status,CatchResponseError('Failed to check queue status: 0'),15
+GET,/cache/get/cache_key_81,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_87,CatchResponseError('Failed to get from cache: 0'),1
+GET,/lock/status/resource_4,CatchResponseError('Failed to check status: 0'),3
+GET,/cache/get/cache_key_61,CatchResponseError('Failed to get from cache: 0'),1
+POST,/queue/enqueue,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",13
+GET,/cache/get/cache_key_37,CatchResponseError('Failed to get from cache: 0'),2
+GET,/cache/get/cache_key_33,CatchResponseError('Failed to get from cache: 0'),1
+GET,/health,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",80
+GET,/lock/status/resource_5,CatchResponseError('Failed to check status: 0'),5
+GET,/queue/dequeue?key=queue_1,CatchResponseError('Failed to dequeue: 0'),6
+GET,/queue/dequeue?key=queue_3,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",4
+GET,/cache/get/cache_4,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",2
+GET,/cache/get/cache_1,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",3
+GET,/cache/get/cache_key_67,CatchResponseError('Failed to get from cache: 0'),1
+GET,/queue/dequeue?key=queue_3,CatchResponseError('Failed to dequeue: 0'),8
+GET,/queue/dequeue?key=queue_2,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",1
+GET,/cache/get/cache_key_31,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_76,CatchResponseError('Failed to get from cache: 0'),1
+GET,/lock/status/resource_9,CatchResponseError('Failed to check status: 0'),4
+GET,/cache/get/cache_key_26,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_38,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_10,CatchResponseError('Failed to get from cache: 0'),1
+GET,/cache/get/cache_key_74,CatchResponseError('Failed to get from cache: 0'),1
+GET,/lock/status/resource_6,CatchResponseError('Failed to check status: 0'),4
