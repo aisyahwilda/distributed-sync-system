@@ -1,0 +1,5 @@
+Method,Name,Error,Occurrences
+POST,/lock/acquire?resource_id=resource_2&lock_type=exclusive,CatchResponseError('Failed to acquire lock: 422'),1
+POST,/lock/acquire?resource_id=resource_7&lock_type=shared,CatchResponseError('Failed to acquire shared lock: 422'),1
+POST,/lock/acquire?resource_id=resource_1&lock_type=exclusive,CatchResponseError('Failed to acquire lock: 422'),1
+POST,/lock/acquire?resource_id=resource_6&lock_type=exclusive,CatchResponseError('Failed to acquire lock: 422'),2

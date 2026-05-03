@@ -81,14 +81,20 @@ class LockManagerUserTasks(TaskSet):
         """Acquire exclusive lock"""
         start = time.time()
         resource_id = f"resource_{random.randint(1, 10)}"
-        
+        payload = {
+            "node_id": f"locust_{random.randint(1, 1000)}",
+            "resource_id": resource_id,
+            "lock_type": "exclusive"
+        }
+
         with self.client.post(
-            f"/lock/acquire?resource_id={resource_id}&lock_type=exclusive",
+            "/lock/acquire",
+            json=payload,
             catch_response=True
         ) as response:
             elapsed = time.time() - start
             stats_collector.record_request(elapsed, "lock")
-            
+
             if response.status_code == 200:
                 response.success()
             else:
@@ -99,14 +105,20 @@ class LockManagerUserTasks(TaskSet):
         """Acquire shared lock"""
         start = time.time()
         resource_id = f"resource_{random.randint(1, 10)}"
-        
+        payload = {
+            "node_id": f"locust_{random.randint(1, 1000)}",
+            "resource_id": resource_id,
+            "lock_type": "shared"
+        }
+
         with self.client.post(
-            f"/lock/acquire?resource_id={resource_id}&lock_type=shared",
+            "/lock/acquire",
+            json=payload,
             catch_response=True
         ) as response:
             elapsed = time.time() - start
             stats_collector.record_request(elapsed, "lock")
-            
+
             if response.status_code == 200:
                 response.success()
             else:
@@ -142,14 +154,15 @@ class QueueUserTasks(TaskSet):
         start = time.time()
         key = f"queue_{random.randint(1, 5)}"
         message = f"message_{time.time()}"
-        
+
         with self.client.post(
-            f"/queue/enqueue?key={key}&message={message}",
+            "/queue/enqueue",
+            json={"key": key, "content": message},
             catch_response=True
         ) as response:
             elapsed = time.time() - start
             stats_collector.record_request(elapsed, "queue")
-            
+
             if response.status_code == 200:
                 response.success()
             else:
@@ -262,18 +275,26 @@ class MixedWorkloadTasks(TaskSet):
         """Random lock operation"""
         resource_id = f"resource_{random.randint(1, 5)}"
         lock_type = random.choice(["shared", "exclusive"])
-        
+
         self.client.post(
-            f"/lock/acquire?resource_id={resource_id}&lock_type={lock_type}"
+            "/lock/acquire",
+            json={
+                "node_id": f"locust_{random.randint(1, 1000)}",
+                "resource_id": resource_id,
+                "lock_type": lock_type
+            }
         )
     
     @task(1)
     def queue_operation(self):
         """Random queue operation"""
         key = f"queue_{random.randint(1, 3)}"
-        
+
         if random.random() > 0.5:
-            self.client.post(f"/queue/enqueue?key={key}&message=test")
+            self.client.post(
+                "/queue/enqueue",
+                json={"key": key, "content": "test"}
+            )
         else:
             self.client.get(f"/queue/dequeue?key={key}")
     
